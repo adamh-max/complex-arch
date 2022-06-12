@@ -14,6 +14,7 @@ after_success:
   - docker build -t adamhats/complex-server ./server
   - docker build -t adamhats/complex-nginx ./nginx
   - docker build -t adamhats/complex-worker ./worker
+  - docker ps -a
 
   # log in to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io
