@@ -11,7 +11,7 @@ script:
 
 after_success:
   - docker build -t adamhats/complex-client-prod ./client
-  - docker build -t adamhats/complex-server ./server
+  - docker build -t adamhats/complex-server-prod ./server
   - docker build -t adamhats/complex-nginx ./nginx
   - docker build -t adamhats/complex-worker ./worker
 
@@ -20,7 +20,7 @@ after_success:
   # take images and push to docker
   
   - docker push adamhats/complex-client-prod
-  - docker push adamhats/complex-server
+  - docker push adamhats/complex-server-prod
   - docker push adamhats/complex-nginx
   - docker push adamhats/complex-worker
     
