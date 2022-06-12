@@ -1,0 +1,25 @@
+language: generic
+sudo: required
+services:
+  -docker
+
+before_install:
+  - docker build -t adamh/complex-client -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true adamh/complex-client npm run test
+
+after_success:
+  - docker build -t adamh/complex-client-prod ./client
+  - docker build -t adamh/complex-server ./server
+  - docker build -t adamh/complex-nginx ./nginx
+  - docker build -t adamh/complex-worker ./worker
+
+  # log in to docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  # take images and push to docker
+  - docker push adamh/complex-client-prod
+  - docker push adamh/complex-server
+  - docker push adamh/complex-nginx
+  - docker push adamh/complex-worker
+    
