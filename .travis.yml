@@ -16,10 +16,10 @@ after_success:
   - docker build -t adamh/complex-worker ./worker
 
   # log in to docker hub
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io
   # take images and push to docker
-  - docker push adamh/complex-client-prod
-  - docker push adamh/complex-server
-  - docker push adamh/complex-nginx
-  - docker push adamh/complex-worker
+  - docker push adamh/complex-client-prod:latest
+  - docker push adamh/complex-server:latest
+  - docker push adamh/complex-nginx:latest
+  - docker push adamh/complex-worker:latest
     
