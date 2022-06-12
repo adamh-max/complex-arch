@@ -18,8 +18,8 @@ after_success:
   # log in to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io
   # take images and push to docker
-  - docker push adamh/complex-client-prod:latest
-  - docker push adamh/complex-server:latest
-  - docker push adamh/complex-nginx:latest
-  - docker push adamh/complex-worker:latest
+  - docker push adamh/complex-client-prod:0.0.1
+  - docker push adamh/complex-server:0.0.1
+  - docker push adamh/complex-nginx:0.0.1
+  - docker push adamh/complex-worker:0.0.1
     
