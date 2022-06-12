@@ -4,10 +4,10 @@ services:
   -docker
 
 before_install:
-  - docker build -t adamhats/complex-client -f ./client/Dockerfile.dev ./client
+ # - docker build -t adamhats/complex-client -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true adamhats/complex-client npm run test
+#  - docker run -e CI=true adamhats/complex-client npm run test
 
 after_success:
   - docker build -t adamhats/complex-client-prod ./client
@@ -19,7 +19,7 @@ after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io
   # take images and push to docker
   - docker push adamhats/complex-client-prod:0.0.1
-  - docker pull -a adamhats/complex-server:latest
+  - docker pull adamhats/complex-server:latest
   - docker tag adamhats/complex-server adamhats/complex-server:latest
   - docker push adamhats/complex-server
   - docker push adamhats/complex-nginx:0.0.1
